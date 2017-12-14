@@ -94,6 +94,9 @@ func (w *Writer) Start() {
 
 // Stop stops the listener that updates the terminal
 func (w *Writer) Stop() {
+	defer func() {
+		recover()
+	}()
 	w.Flush()
 	close(w.tdone)
 }
